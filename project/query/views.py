@@ -1,12 +1,14 @@
 #views.py
-
-from rest_framework import viewsets
+from django.shortcuts import render
+from rest_framework import status, viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from .serializers import QuerySerializer
 from .models import Query
 import psycopg2
 import sqlite3
-import pandas
+from pandas import DataFrame
 
 class QueryViewSet(viewsets.ModelViewSet):
     queryset = Query.objects.all().order_by('name')
